@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block nav %}
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+  <div class="container-fluid">
+    <ul class="nav">
+    <li class="nav-item">
+      <h4 class="nav-title">{{ category.cat_name }}</h4>
+    </li>
+  </ul>
+<ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'edit_post' category.id post.slug %}">Edit Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'category_detail' category.id %}">Go Back</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'delete_post' category.id post.slug %}">Delete Item</a>
+  </li>
+</ul>
+</div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="col d-flex justify-content-center">   
+<div class="card .mx-auto" style="width: 25rem;">
+  
+  <div class="card-body">
+    {% if post.image %}
+    <img src="{{ post.image.url }}" class="card-img-top" alt="">
+    {% endif %}
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.description}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Price: </b>{{post.price}}</li>
+    <li class="list-group-item"><b>Seller: </b>{{post.seller}}</li>
+  <li class="list-group-item"><b>Location: </b>{{post.location}}</li>
+  <iframe width="400" height="250" style="border:0" loading="lazy" allowfullscreen
+src="{{ location }}"></iframe>
+</ul>
+</div>
+</div>
+{% endblock %}

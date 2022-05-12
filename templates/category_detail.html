@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block nav %}
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+<div class="container-fluid">
+  <ul class="nav">
+  <li class="nav-item">
+    <h4 class="nav-title">{{ category.cat_name }}</h4>
+  </li>
+</ul>
+<ul class="nav">
+  <li class="nav-item" >
+    <a class="nav-link" href="{% url 'new_post' category_id=category.id %}">List New Item</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'categories_list' %}">Go Back</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'delete_category' category_id=category.id %}">Delete Category</a>
+  </li>
+  
+</ul>
+</div>
+</nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-6 col-md-4">Title</a></div>
+        <div class="col-6 col-md-4">Price</div>
+        <div class="col-6 col-md-4">Date Listed</div>
+      </div>
+      <hr>
+        {% for post in posts %}
+
+          <div class="row">
+            <div class="col-6 col-md-4"><a href="{% url 'post_detail' category.id post.slug %}">{{ post.title }}</a></div>
+            <div class="col-6 col-md-4">{{ post.price }}</div>
+            <div class="col-6 col-md-4">{{ post.date_listed }}</div>
+          </div>
+      
+        
+
+        <hr>
+        {% endfor %}
+   
+    </div>
+  
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block nav %}
+<nav class="navbar" style="border-bottom: 2px solid #52688F">
+  <div class="container-fluid">
+    <ul class="nav">
+    <li class="nav-item">
+      <h4 class="nav-title">
+        {% if category %}
+        {{ category.cat_name }}
+        {% endif %}
+      </h4>
+    </li>
+  </ul>
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'category_detail' category_id=category.id %}">Go Back</a>
+  </li>
+
+</ul>
+</div>
+</nav>
+{% endblock %}
+{% block content %}
+<h2>Item for Sale</h2>
+<div class="container">
+<form method = "POST" enctype="multipart/form-data">{% csrf_token %}
+  <div class='row'>
+    <div class="col-6">
+      {{ form.title|as_crispy_field }}
+      </div>
+    <div class="col-6">
+      {{ form.price|as_crispy_field }}
+    </div>
+    </div>
+    {{ form.description|as_crispy_field }}
+    <div class="row">
+      <div class="col-6">
+        {{ form.location|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.seller|as_crispy_field}}
+      </div>
+      <div class="col-6">
+        {{ form.image|as_crispy_field}}
+      </div>
+    </div>
+  <button type="submit">Submit</button>
+  </form>
+</div>
+ 
+
+{% endblock %}
